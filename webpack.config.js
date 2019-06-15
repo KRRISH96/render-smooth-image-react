@@ -3,25 +3,28 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
     libraryTarget: 'commonjs2'
   },
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|build)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
-      }
+        exclude: /(node_modules|build)/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.(s*)css$/,
+        exclude: /(node_modules|build)/,
+        use: ['style-loader','css-loader', 'sass-loader']
+     }
     ]
   },
   externals: {
