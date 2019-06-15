@@ -10,8 +10,9 @@ class RenderSmoothImage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{width: 300, height: 300}}>
         <img alt="tester image"/>
+        I am under developement please bare with me.
       </div>
     )
   }
