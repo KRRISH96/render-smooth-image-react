@@ -43,9 +43,8 @@ class RenderSmoothImage extends React.Component {
         )}
         {isValidSrc && !imageLoaded && (
           <div className="smooth-preloader">
-            <div
-              className="spinner"
-              style={{ width: 30, display: 'inline-block' }}
+            <span
+              className="loader"
             />
           </div>
         )}
