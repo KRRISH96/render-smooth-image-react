@@ -1,0 +1,35 @@
+.smooth-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .smooth-image {
+    object-fit: contain;
+    transition: opacity 1s;
+    width: 100%;
+    height: 100%;
+  }
+
+  .smooth-preloader {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+
+  .smooth-no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  .img-visible {
+    opacity: 1;
+  }
+
+  .img-hidden {
+    opacity: 0;
+  }
+}
