@@ -1,2 +1,4 @@
 # render-smooth-image-react
-WIP: A react Image component to render images smoothly.
+A React component to render images smoothly.
+
+![Render Smooth Image GIF](RenderSmoothImage.gif)
