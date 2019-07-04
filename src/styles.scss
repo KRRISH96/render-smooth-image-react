@@ -1,22 +1,24 @@
-.smooth-image-wrapper {
+.fullSize {
   width: 100%;
   height: 100%;
+}
+
+.smooth-image-wrapper {
+  @extend .fullSize;
   position: relative;
   .smooth-image {
     object-fit: contain;
     transition: opacity 1s;
-    width: 100%;
-    height: 100%;
+    @extend .fullSize;
   }
 
   .smooth-no-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    @extend .fullSize;
     border: 1px solid #ccc;
-    background-color: rgba(0,0,0,0.1);
+    background-color: #fcfcfc;
     text-transform: capitalize;
   }
 
@@ -41,16 +43,14 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(238, 238, 238, 0.34);
+    @extend .fullSize;
+    background: rgba(245, 245, 245, 0.34);
     .loader {
       background-image: linear-gradient(to right, #e6e6e6, #ffffff, #e6e6e6);
-      height: 100%;
-      width: 100%;
+      @extend .fullSize;
       display: inline-block;
-      background-size: 600px;
-      animation: preloader-block 1s linear 0s infinite reverse forwards;
+      background-size: 200%;
+      animation: preloader-block 1.4s linear 0s infinite reverse forwards;
     }
   }
 }
