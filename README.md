@@ -1,2 +1,2 @@
 # render-smooth-image-react
-A react Image component to render images smoothly.
+WIP: A react Image component to render images smoothly.
