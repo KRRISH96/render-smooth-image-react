@@ -21,12 +21,18 @@ import RenderSmoothImage from 'render-smooth-image-react';
 
 const Image = () => (
   <div style={{width: 300, height: 300}}>
-    <RenderSmoothImage src={screen} alt="logo"  />
+    <RenderSmoothImage src={'your-image-source'} alt="alternate-text"  />
   </div>
 );
 
 export default Image;
 ```
+
+## Props
+| Property        | Description |
+| --------------- | ----------- |
+| src (`*required`) | Image source link or path to image |
+| alt | ALternate text to display when src failed (`default='not found'`) |
 
 ## Note
 `RenderSmoothImage` will occupy full width and height of its parent component.
