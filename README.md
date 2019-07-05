@@ -42,3 +42,7 @@ So, To control width/height set a parent div with desired dimensions.
 | --------------- | ----------- |
 | src (`*required`) | Image source link or path to image |
 | alt | ALternate text to display when src failed (`default='not found'`) |
+
+## Request / Bug Report
+If you have any issues or have any suggestions,
+Please feel free to open an issue [here](https://github.com/KRRISH96/render-smooth-image-react/issues)
