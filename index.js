@@ -8,15 +8,17 @@ class RenderSmoothImage extends React.Component {
       imageLoaded: false,
       isValidSrc: !!props.src,
     };
+    this.onImageLoad = this.onImageLoad.bind(this);
+    this.handleImageLoadingFail = this.handleImageLoadingFail.bind(this);
   }
 
-  onImageLoad = () => {
+  onImageLoad() {
     this.setState({
       imageLoaded: true,
     });
   };
 
-  handleImageLoadingFail = () => {
+  handleImageLoadingFail() {
     this.setState({
       isValidSrc: false,
     });
