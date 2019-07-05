@@ -7,7 +7,6 @@
   @extend .fullSize;
   position: relative;
   .smooth-image {
-    object-fit: contain;
     transition: opacity 1s;
     @extend .fullSize;
   }
