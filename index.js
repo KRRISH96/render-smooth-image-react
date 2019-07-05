@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './style.scss';
 
 class RenderSmoothImage extends React.Component {
   constructor(props) {
