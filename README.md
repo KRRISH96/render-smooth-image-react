@@ -1,7 +1,10 @@
 # render-smooth-image-react
 A React component to render images smoothly.
 
-![Render Smooth Image GIF](RenderSmoothImage.gif)
+## In Action
+The left side one is default rendering of an image in DOM, The right one uses `render-smooth-image-react`.
+
+![Render Smooth Image GIF](images/RenderSmoothImage.gif)
 
 ## Install
 Using npm 
