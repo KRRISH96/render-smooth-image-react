@@ -4,3 +4,5 @@ yarn.lock
 .gitignore
 .github
 src
+.babelrc
+*.log

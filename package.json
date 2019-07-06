@@ -1,11 +1,12 @@
 {
   "name": "render-smooth-image-react",
-  "version": "0.0.5-beta-1",
+  "version": "0.0.6",
   "description": "A React Component to render images smoothly.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "webpack --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/index.js -o build/index.js && node-sass src/styles.scss build/style.css --output-style compressed"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,15 @@
   },
   "homepage": "https://github.com/KRRISH96/render-smooth-image-react#readme",
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-minify": "^0.5.0",
     "node-sass": "^4.12.0"
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  }
+  },
+  "targets": "> 0.25%, not dead"
 }
