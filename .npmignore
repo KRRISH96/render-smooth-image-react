@@ -2,3 +2,5 @@ node_modules/
 src/
 idea/
 yarn.lock
+package.lock.json
+.github
