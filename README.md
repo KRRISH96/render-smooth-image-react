@@ -38,11 +38,36 @@ export default Image;
 So, To control width/height set a parent div with desired dimensions.
 
 ## Props
-| Property        | Description |
-| --------------- | ----------- |
-| src (`*required`) | Image source link or path to image |
-| alt | ALternate text to display when src failed (`default='not found'`) |
+| Property        | Description | Default |
+| --------------- | ----------- | ------- |
+| src (`*required`) | Image source link or path to image | &nbsp; |
+| alt | Alternate text to display when src failed. | `not found` |
+| objectFit | Sets the `object-fit` property in css (helps determining how the content should be resized to fit its container). Valid options `contain`, `fill`, `cover`, `none`, `scale-down`. [Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) | `contain` |
+
+## Classes
+| ClassName       | Description      |
+| --------------- | ---------------- |
+| `smooth-image-wrapper` | Class added to root element. |
+| `smooth-image` | Class added to `img` tag. |
+| `image-hidden`, `image-visible` | For `img` tag, Class `image-hidden` is added while image is being downloaded and will be replaced with `image-visible` once image is ready to render. |
+| `smooth-no-image` | Class added for element rendering `alt` text. (`img` tag is replaced with a `div` with `alt` text for invalid `src` or when image is not found at given `src`). |
+
+## HTML structure
+For Valid image source.
+```html
+<div class="smooth-image-wrapper">
+  <img src="your-image-source" class="smooth-image image-visible" />
+</div>
+```
+
+For Invalid Image source, rendering alternate text.
+```html
+<div class="smooth-image-wrapper">
+  <div class="smooth-no-image">"Your alternate text."</div>
+</div>
+```
+
 
 ## Request / Bug Report
 If you have any issues or have any suggestions,
-Please feel free to open an issue [here](https://github.com/KRRISH96/render-smooth-image-react/issues)
+Please feel free to open an issue [here](https://github.com/KRRISH96/render-smooth-image-react/issues).
