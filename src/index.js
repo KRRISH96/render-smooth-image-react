@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-class RenderSmoothImage extends React.Component {
+export default class RenderSmoothImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,13 +14,14 @@ class RenderSmoothImage extends React.Component {
 
   render() {
     const { imageLoaded, isValidSrc } = this.state;
-    const { src, alt = 'not found' } = this.props;
+    const { src, alt = 'not found', objectFit='contain' } = this.props;
 
     return (
       <div className="smooth-image-wrapper">
         {isValidSrc ? (
           <img
             className={`smooth-image img-${imageLoaded ? 'visible' : 'hidden'}`}
+            style={{ objectFit }}
             src={src}
             alt={alt}
             onLoad={this.showImage}
@@ -42,5 +43,3 @@ class RenderSmoothImage extends React.Component {
     );
   }
 }
-
-export default RenderSmoothImage;
