@@ -8,21 +8,9 @@ class RenderSmoothImage extends React.Component {
       imageLoaded: false,
       isValidSrc: !!props.src,
     };
-    this.onImageLoad = this.onImageLoad.bind(this);
-    this.handleImageLoadingFail = this.handleImageLoadingFail.bind(this);
+    this.showImage = () => this.setState({imageLoaded: true});
+    this.handleError = () => this.setState({isValidSrc: false});
   }
-
-  onImageLoad() {
-    this.setState({
-      imageLoaded: true,
-    });
-  };
-
-  handleImageLoadingFail() {
-    this.setState({
-      isValidSrc: false,
-    });
-  };
 
   render() {
     const { imageLoaded, isValidSrc } = this.state;
@@ -35,8 +23,8 @@ class RenderSmoothImage extends React.Component {
             className={`smooth-image img-${imageLoaded ? 'visible' : 'hidden'}`}
             src={src}
             alt={alt}
-            onLoad={this.onImageLoad}
-            onError={this.handleImageLoadingFail}
+            onLoad={this.showImage}
+            onError={this.handleError}
           />
         ) : (
           <div className="smooth-no-image">

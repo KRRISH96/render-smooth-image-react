@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src/index.js -o build/index.js && node-sass src/styles.scss build/style.css --output-style compressed"
+    "build": "rm -rf build && mkdir build && babel src/index.js -o build/index.js && node-sass src/styles.scss build/style.css --output-style compressed"
   },
   "repository": {
     "type": "git",
