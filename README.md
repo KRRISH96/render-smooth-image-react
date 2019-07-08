@@ -1,4 +1,8 @@
 # render-smooth-image-react
+![NPM](https://img.shields.io/npm/l/render-smooth-image-react.svg)
+![npm (custom registry)](https://img.shields.io/npm/v/render-smooth-image-react/latest.svg)
+![npm](https://img.shields.io/npm/dm/render-smooth-image-react.svg)
+
 A React component to render images smoothly.
 
 ## In Action
