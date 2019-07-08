@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 export default class RenderSmoothImage extends React.Component {
@@ -14,7 +15,7 @@ export default class RenderSmoothImage extends React.Component {
 
   render() {
     const { imageLoaded, isValidSrc } = this.state;
-    const { src, alt = 'not found', objectFit='contain' } = this.props;
+    const { src, alt, objectFit } = this.props;
 
     return (
       <div className="smooth-image-wrapper">
@@ -42,4 +43,15 @@ export default class RenderSmoothImage extends React.Component {
       </div>
     );
   }
+}
+
+RenderSmoothImage.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down']),
+}
+
+RenderSmoothImage.defaultProps = {
+  alt: 'not found',
+  objectFit: 'contain',
 }
