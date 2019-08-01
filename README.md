@@ -57,14 +57,14 @@ So, To control width/height set a parent div with desired dimensions.
 | `smooth-no-image` | Class added for element rendering `alt` text. (`img` tag is replaced with a `div` with `alt` text for invalid `src` or when image is not found at given `src`). |
 
 ## HTML structure
-For Valid image source.
+For Valid Image Source.
 ```html
 <div class="smooth-image-wrapper">
   <img src="your-image-source" class="smooth-image image-visible" />
 </div>
 ```
 
-For Invalid Image source, rendering alternate text.
+For Invalid Image Source, rendering alternate text.
 ```html
 <div class="smooth-image-wrapper">
   <div class="smooth-no-image">"Your alternate text."</div>
