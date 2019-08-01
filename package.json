@@ -1,6 +1,6 @@
 {
   "name": "render-smooth-image-react",
-  "version": "0.0.7",
+  "version": "0.0.8-beta",
   "description": "A React Component to render images smoothly.",
   "main": "build/index.js",
   "scripts": {
