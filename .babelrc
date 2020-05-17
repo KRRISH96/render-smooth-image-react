@@ -1,5 +1,3 @@
 {
-  "presets": [
-    "@babel/preset-react", "minify",
-  ],
+  "presets": ["@babel/preset-react", "minify", "@babel/env"]
 }
