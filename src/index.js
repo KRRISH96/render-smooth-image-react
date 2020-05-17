@@ -7,10 +7,10 @@ export default class RenderSmoothImage extends React.Component {
     super(props);
     this.state = {
       imageLoaded: false,
-      isValidSrc: !!props.src,
+      isValidSrc: !!props.src
     };
-    this.showImage = () => this.setState({imageLoaded: true});
-    this.handleError = () => this.setState({isValidSrc: false});
+    this.showImage = () => this.setState({ imageLoaded: true });
+    this.handleError = () => this.setState({ isValidSrc: false });
   }
 
   render() {
@@ -29,15 +29,11 @@ export default class RenderSmoothImage extends React.Component {
             onError={this.handleError}
           />
         ) : (
-          <div className="smooth-no-image">
-            {alt}
-          </div>
+          <div className="smooth-no-image">{alt}</div>
         )}
         {isValidSrc && !imageLoaded && (
           <div className="smooth-preloader">
-            <span
-              className="loader"
-            />
+            <span className="loader" />
           </div>
         )}
       </div>
@@ -48,10 +44,10 @@ export default class RenderSmoothImage extends React.Component {
 RenderSmoothImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
-  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down']),
-}
+  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down'])
+};
 
 RenderSmoothImage.defaultProps = {
   alt: 'not found',
-  objectFit: 'contain',
-}
+  objectFit: 'contain'
+};
