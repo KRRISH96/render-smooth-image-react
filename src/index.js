@@ -12,6 +12,12 @@ export default class RenderSmoothImage extends React.Component {
     this.handleError = () => this.setState({ isValidSrc: false });
   }
 
+  componentDidMount() {
+    if (this.state.isValidSrc) {
+      new Image().src = this.props.src;
+    }
+  }
+
   render() {
     const { imageLoaded, isValidSrc } = this.state;
     const { src, alt, objectFit } = this.props;
