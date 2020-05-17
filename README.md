@@ -25,6 +25,7 @@ yarn add render-smooth-image-react
 ```jsx
 import React from 'react';
 import RenderSmoothImage from 'render-smooth-image-react';
+import 'render-smooth-image-react/build/style.css';
 
 const Image = () => (
   <div style={{width: 300, height: 300}}>
@@ -71,6 +72,15 @@ For Invalid Image Source, rendering alternate text.
 </div>
 ```
 
+For Loader
+
+```html
+<div class="smooth-image-wrapper">
+  <div className="smooth-preloader">
+    <span className="loader" />
+  </div>
+</div>
+```
 
 ## Request / Bug Report
 If you have any issues or have any suggestions,
