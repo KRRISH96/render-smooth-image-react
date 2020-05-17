@@ -1,4 +1,5 @@
 # render-smooth-image-react
+
 ![NPM](https://img.shields.io/npm/l/render-smooth-image-react.svg)
 ![npm (custom registry)](https://img.shields.io/npm/v/render-smooth-image-react/latest.svg)
 ![npm](https://img.shields.io/npm/dm/render-smooth-image-react.svg)
@@ -6,16 +7,21 @@
 A React component to render images smoothly.
 
 ## In Action
+
 The left side one is default rendering of an image in DOM, The right one uses `render-smooth-image-react`.
 
 ![RenderSmoothImageDemo](https://user-images.githubusercontent.com/22497932/60706073-4400fd80-9f26-11e9-8932-93fa6b423a6c.gif)
 
 ## Install
-Using npm 
+
+Using npm
+
 ```
 npm i render-smooth-image-react
 ```
+
 or Using yarn
+
 ```
 yarn add render-smooth-image-react
 ```
@@ -66,6 +72,7 @@ For Valid Image Source.
 ```
 
 For Invalid Image Source, rendering alternate text.
+
 ```html
 <div class="smooth-image-wrapper">
   <div class="smooth-no-image">"Your alternate text."</div>
@@ -83,5 +90,6 @@ For Loader
 ```
 
 ## Request / Bug Report
+
 If you have any issues or have any suggestions,
 Please feel free to open an issue [here](https://github.com/KRRISH96/render-smooth-image-react/issues).
