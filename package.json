@@ -3,6 +3,10 @@
   "version": "0.0.8",
   "description": "A React Component to render images smoothly.",
   "main": "build/index.js",
+  "files": [
+    "build/*.js",
+    "build/*.css"
+  ],
   "scripts": {
     "start": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
