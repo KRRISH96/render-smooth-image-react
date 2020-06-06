@@ -10,11 +10,16 @@ export default class RenderSmoothImage extends React.Component {
     };
     this.showImage = () => this.setState({ imageLoaded: true });
     this.handleError = () => this.setState({ isValidSrc: false });
+    this.imageRef = React.createRef();
   }
 
   componentDidMount() {
     if (this.state.isValidSrc) {
       new Image().src = this.props.src;
+    }
+    // Image tag is not rendered for invalis src - Hence the check for ref's presence.
+    if (!!this.imageRef.current && this.imageRef.current.complete) {
+      this.showImage();
     }
   }
 
@@ -26,6 +31,7 @@ export default class RenderSmoothImage extends React.Component {
       <div className="smooth-image-wrapper">
         {isValidSrc ? (
           <img
+            ref={this.imageRef}
             className={`smooth-image img-${imageLoaded ? 'visible' : 'hidden'}`}
             style={{ objectFit }}
             src={src}
