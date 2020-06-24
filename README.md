@@ -3,6 +3,9 @@
 ![NPM](https://img.shields.io/npm/l/render-smooth-image-react.svg)
 ![npm (custom registry)](https://img.shields.io/npm/v/render-smooth-image-react/latest.svg)
 ![npm](https://img.shields.io/npm/dm/render-smooth-image-react.svg)
+<a href="https://github.com/KRRISH96/render-smooth-image-react">
+  <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source Love" />
+</a>
 
 A React component to render images smoothly.
 
