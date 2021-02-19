@@ -6,10 +6,24 @@ export default class RenderSmoothImage extends React.Component {
     super(props);
     this.state = {
       imageLoaded: false,
-      isValidSrc: !!props.src
+      isValidSrc: !!props.src,
     };
-    this.showImage = () => this.setState({ imageLoaded: true });
-    this.handleError = () => this.setState({ isValidSrc: false });
+    this.showImage = (loadEvent = null) =>
+      this.setState(
+        { imageLoaded: true },
+        () =>
+          loadEvent !== null &&
+          typeof props.onLoad === 'function' &&
+          props.onLoad(loadEvent)
+      );
+    this.handleError = (errorEvent = null) =>
+      this.setState(
+        { isValidSrc: false },
+        () =>
+          errorEvent !== null &&
+          typeof props.onError === 'function' &&
+          props.onError(errorEvent)
+      );
     this.imageRef = React.createRef();
   }
 
@@ -56,7 +70,15 @@ export default class RenderSmoothImage extends React.Component {
 RenderSmoothImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
-  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down']),
+  objectFit: PropTypes.oneOf([
+    'contain',
+    'fill',
+    'cover',
+    'none',
+    'scale-down',
+  ]),
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
   wrapperProps: PropTypes.shape({}),
   imageProps: PropTypes.shape({}),
 };
@@ -64,6 +86,8 @@ RenderSmoothImage.propTypes = {
 RenderSmoothImage.defaultProps = {
   alt: 'not found',
   objectFit: 'contain',
+  onLoad: () => null,
+  onError: () => null,
   wrapperProps: {},
   imageProps: {},
 };
