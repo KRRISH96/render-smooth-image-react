@@ -17,7 +17,7 @@ export default class RenderSmoothImage extends React.Component {
     if (this.state.isValidSrc) {
       new Image().src = this.props.src;
     }
-    // Image tag is not rendered for invalis src - Hence the check for ref's presence.
+    // Image tag is not rendered for invalid src - Hence the check for ref's presence.
     if (!!this.imageRef.current && this.imageRef.current.complete) {
       this.showImage();
     }
