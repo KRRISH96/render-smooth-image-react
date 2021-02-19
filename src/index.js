@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// TODO: For immediate use-case in a heavily dependant project, used e.persist()
+// This doesn't do anything in React v17 above
+// Migrate to use hooks - r=that will be v2.0.0 major release
 export default class RenderSmoothImage extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +11,10 @@ export default class RenderSmoothImage extends React.Component {
       imageLoaded: false,
       isValidSrc: !!props.src,
     };
-    this.showImage = (loadEvent = null) =>
+    this.showImage = (loadEvent = null) => {
+      // https://reactjs.org/docs/legacy-event-pooling.html
+      loadEvent !== null && loadEvent.persist();
+
       this.setState(
         { imageLoaded: true },
         () =>
@@ -16,7 +22,11 @@ export default class RenderSmoothImage extends React.Component {
           typeof props.onLoad === 'function' &&
           props.onLoad(loadEvent)
       );
-    this.handleError = (errorEvent = null) =>
+    };
+    this.handleError = (errorEvent = null) => {
+      // https://reactjs.org/docs/legacy-event-pooling.html
+      errorEvent !== null && errorEvent.persist();
+
       this.setState(
         { isValidSrc: false },
         () =>
@@ -24,6 +34,7 @@ export default class RenderSmoothImage extends React.Component {
           typeof props.onError === 'function' &&
           props.onError(errorEvent)
       );
+    };
     this.imageRef = React.createRef();
   }
 
