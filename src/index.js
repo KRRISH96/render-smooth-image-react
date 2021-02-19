@@ -25,10 +25,10 @@ export default class RenderSmoothImage extends React.Component {
 
   render() {
     const { imageLoaded, isValidSrc } = this.state;
-    const { src, alt, objectFit } = this.props;
+    const { src, alt, objectFit, imageProps, wrapperProps } = this.props;
 
     return (
-      <div className="smooth-image-wrapper">
+      <div className="smooth-image-wrapper" {...wrapperProps}>
         {isValidSrc ? (
           <img
             ref={this.imageRef}
@@ -38,6 +38,7 @@ export default class RenderSmoothImage extends React.Component {
             alt={alt}
             onLoad={this.showImage}
             onError={this.handleError}
+            {...imageProps}
           />
         ) : (
           <div className="smooth-no-image">{alt}</div>
@@ -55,10 +56,14 @@ export default class RenderSmoothImage extends React.Component {
 RenderSmoothImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
-  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down'])
+  objectFit: PropTypes.oneOf(['contain', 'fill', 'cover', 'none', 'scale-down']),
+  wrapperProps: PropTypes.shape({}),
+  imageProps: PropTypes.shape({}),
 };
 
 RenderSmoothImage.defaultProps = {
   alt: 'not found',
-  objectFit: 'contain'
+  objectFit: 'contain',
+  wrapperProps: {},
+  imageProps: {},
 };
