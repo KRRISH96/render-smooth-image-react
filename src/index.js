@@ -42,18 +42,29 @@ const RenderSmoothImage = ({
       onError(errorEvent);
   };
 
+  let imageClassnames = `smooth-image img-${
+    imageLoaded ? "visible" : "hidden"
+  }`;
+
   return (
-    <div className="smooth-image-wrapper" {...wrapperProps}>
+    <div
+      {...wrapperProps}
+      className={`smooth-image-wrapper${
+        wrapperProps?.className ? ` ${wrapperProps.className}` : ""
+      }`}
+    >
       {isValidSrc ? (
         <img
           ref={imageRef}
-          className={`smooth-image img-${imageLoaded ? "visible" : "hidden"}`}
           style={{ objectFit }}
           src={src}
           alt={alt}
           onLoad={showImage}
           onError={handleError}
           {...imageProps}
+          className={`${imageClassnames}${
+            imageProps?.className ? ` ${imageProps?.className}` : ""
+          }`}
         />
       ) : (
         <div className="smooth-no-image">{alt}</div>
