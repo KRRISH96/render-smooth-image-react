@@ -103,4 +103,4 @@ RenderSmoothImage.defaultProps = {
   imageProps: {}
 };
 
-export default RenderSmoothImage;
+export default memo(RenderSmoothImage);
