@@ -27,7 +27,9 @@ const RenderSmoothImage = ({
   const showImage = useCallback(
     (loadEvent = null) => {
       setImageLoaded(true);
-      if (loadEvent !== null && typeof onLoad === "function") onLoad(loadEvent);
+      if (loadEvent !== null && onLoad && typeof onLoad === "function") {
+        onLoad(loadEvent);
+      }
     },
     [setImageLoaded]
   );
@@ -35,7 +37,7 @@ const RenderSmoothImage = ({
   const handleError = useCallback(
     (errorEvent = null) => {
       setIsValidSrc(false);
-      if (errorEvent !== null && typeof onError === "function") {
+      if (errorEvent !== null && onError && typeof onError === "function") {
         onError(errorEvent);
       }
     },
@@ -97,8 +99,8 @@ RenderSmoothImage.propTypes = {
 RenderSmoothImage.defaultProps = {
   alt: "not found",
   objectFit: "contain",
-  onLoad: () => null,
-  onError: () => null,
+  onLoad: null,
+  onError: null,
   wrapperProps: {},
   imageProps: {}
 };
