@@ -35,13 +35,14 @@ const RenderSmoothImage = ({
   const handleError = useCallback(
     (errorEvent = null) => {
       setIsValidSrc(false);
-      if (errorEvent !== null && typeof onError === "function")
+      if (errorEvent !== null && typeof onError === "function") {
         onError(errorEvent);
+      }
     },
     [setIsValidSrc]
   );
 
-  let imageClassnames = `smooth-image img-${
+  const imageClassnames = `smooth-image img-${
     imageLoaded ? "visible" : "hidden"
   }`;
 
