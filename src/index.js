@@ -27,10 +27,7 @@ const RenderSmoothImage = ({
 
   const showImage = useCallback(
     (loadEvent = null) => {
-      // https://reactjs.org/docs/legacy-event-pooling.html
-      if (loadEvent !== null) loadEvent.persist();
       setImageLoaded(true);
-
       if (loadEvent !== null && typeof onLoad === "function") onLoad(loadEvent);
     },
     [setImageLoaded]
@@ -38,10 +35,7 @@ const RenderSmoothImage = ({
 
   const handleError = useCallback(
     (errorEvent = null) => {
-      // https://reactjs.org/docs/legacy-event-pooling.html
-      if (errorEvent !== null) errorEvent.persist();
       setIsValidSrc(false);
-
       if (errorEvent !== null && typeof onError === "function")
         onError(errorEvent);
     },
