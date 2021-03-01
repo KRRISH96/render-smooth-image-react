@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from "react";
+import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -25,22 +25,28 @@ const RenderSmoothImage = ({
     }
   }, []);
 
-  const showImage = (loadEvent = null) => {
-    // https://reactjs.org/docs/legacy-event-pooling.html
-    if (loadEvent !== null) loadEvent.persist();
-    setImageLoaded(true);
+  const showImage = useCallback(
+    (loadEvent = null) => {
+      // https://reactjs.org/docs/legacy-event-pooling.html
+      if (loadEvent !== null) loadEvent.persist();
+      setImageLoaded(true);
 
-    if (loadEvent !== null && typeof onLoad === "function") onLoad(loadEvent);
-  };
+      if (loadEvent !== null && typeof onLoad === "function") onLoad(loadEvent);
+    },
+    [setImageLoaded]
+  );
 
-  const handleError = (errorEvent = null) => {
-    // https://reactjs.org/docs/legacy-event-pooling.html
-    if (errorEvent !== null) errorEvent.persist();
-    setIsValidSrc(false);
+  const handleError = useCallback(
+    (errorEvent = null) => {
+      // https://reactjs.org/docs/legacy-event-pooling.html
+      if (errorEvent !== null) errorEvent.persist();
+      setIsValidSrc(false);
 
-    if (errorEvent !== null && typeof onError === "function")
-      onError(errorEvent);
-  };
+      if (errorEvent !== null && typeof onError === "function")
+        onError(errorEvent);
+    },
+    [setIsValidSrc]
+  );
 
   let imageClassnames = `smooth-image img-${
     imageLoaded ? "visible" : "hidden"
