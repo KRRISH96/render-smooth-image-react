@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import PropTypes from "prop-types";
-import "./styles.scss";
 
 const RenderSmoothImage = ({
   src,
