@@ -1,104 +1,108 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef, memo, useCallback } from "react";
+import PropTypes from "prop-types";
 
-// TODO: For immediate use-case in a heavily dependant project, used e.persist()
-// This doesn't do anything in React v17 above
-// Migrate to use hooks - r=that will be v2.0.0 major release
-export default class RenderSmoothImage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imageLoaded: false,
-      isValidSrc: !!props.src,
-    };
-    this.showImage = (loadEvent = null) => {
-      // https://reactjs.org/docs/legacy-event-pooling.html
-      loadEvent !== null && loadEvent.persist();
+const RenderSmoothImage = ({
+  src,
+  alt,
+  objectFit,
+  imageProps,
+  wrapperProps,
+  onLoad,
+  onError
+}) => {
+  const [isValidSrc, setIsValidSrc] = useState(!!src);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imageRef = useRef();
 
-      this.setState(
-        { imageLoaded: true },
-        () =>
-          loadEvent !== null &&
-          typeof props.onLoad === 'function' &&
-          props.onLoad(loadEvent)
-      );
-    };
-    this.handleError = (errorEvent = null) => {
-      // https://reactjs.org/docs/legacy-event-pooling.html
-      errorEvent !== null && errorEvent.persist();
-
-      this.setState(
-        { isValidSrc: false },
-        () =>
-          errorEvent !== null &&
-          typeof props.onError === 'function' &&
-          props.onError(errorEvent)
-      );
-    };
-    this.imageRef = React.createRef();
-  }
-
-  componentDidMount() {
-    if (this.state.isValidSrc) {
-      new Image().src = this.props.src;
+  useEffect(() => {
+    if (isValidSrc) {
+      new Image().src = src;
     }
     // Image tag is not rendered for invalid src - Hence the check for ref's presence.
-    if (!!this.imageRef.current && this.imageRef.current.complete) {
-      this.showImage();
+    if (!!imageRef.current?.complete) {
+      showImage();
     }
-  }
+  }, []);
 
-  render() {
-    const { imageLoaded, isValidSrc } = this.state;
-    const { src, alt, objectFit, imageProps, wrapperProps } = this.props;
+  const showImage = useCallback(
+    (loadEvent = null) => {
+      setImageLoaded(true);
+      if (loadEvent !== null && onLoad && typeof onLoad === "function") {
+        onLoad(loadEvent);
+      }
+    },
+    [setImageLoaded]
+  );
 
-    return (
-      <div className="smooth-image-wrapper" {...wrapperProps}>
-        {isValidSrc ? (
-          <img
-            ref={this.imageRef}
-            className={`smooth-image img-${imageLoaded ? 'visible' : 'hidden'}`}
-            style={{ objectFit }}
-            src={src}
-            alt={alt}
-            onLoad={this.showImage}
-            onError={this.handleError}
-            {...imageProps}
-          />
-        ) : (
-          <div className="smooth-no-image">{alt}</div>
-        )}
-        {isValidSrc && !imageLoaded && (
-          <div className="smooth-preloader">
-            <span className="loader" />
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+  const handleError = useCallback(
+    (errorEvent = null) => {
+      setIsValidSrc(false);
+      if (errorEvent !== null && onError && typeof onError === "function") {
+        onError(errorEvent);
+      }
+    },
+    [setIsValidSrc]
+  );
+
+  const imageClassnames = `smooth-image img-${
+    imageLoaded ? "visible" : "hidden"
+  }`;
+
+  return (
+    <div
+      {...wrapperProps}
+      className={`smooth-image-wrapper${
+        wrapperProps?.className ? ` ${wrapperProps.className}` : ""
+      }`}
+    >
+      {isValidSrc ? (
+        <img
+          ref={imageRef}
+          style={{ objectFit }}
+          src={src}
+          alt={alt}
+          onLoad={showImage}
+          onError={handleError}
+          {...imageProps}
+          className={`${imageClassnames}${
+            imageProps?.className ? ` ${imageProps?.className}` : ""
+          }`}
+        />
+      ) : (
+        <div className="smooth-no-image">{alt}</div>
+      )}
+      {isValidSrc && !imageLoaded && (
+        <div className="smooth-preloader">
+          <span className="loader" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 RenderSmoothImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
   objectFit: PropTypes.oneOf([
-    'contain',
-    'fill',
-    'cover',
-    'none',
-    'scale-down',
+    "contain",
+    "fill",
+    "cover",
+    "none",
+    "scale-down"
   ]),
   onLoad: PropTypes.func,
   onError: PropTypes.func,
   wrapperProps: PropTypes.shape({}),
-  imageProps: PropTypes.shape({}),
+  imageProps: PropTypes.shape({})
 };
 
 RenderSmoothImage.defaultProps = {
-  alt: 'not found',
-  objectFit: 'contain',
-  onLoad: () => null,
-  onError: () => null,
+  alt: "not found",
+  objectFit: "contain",
+  onLoad: null,
+  onError: null,
   wrapperProps: {},
-  imageProps: {},
+  imageProps: {}
 };
+
+export default memo(RenderSmoothImage);
